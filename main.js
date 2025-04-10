@@ -10,5 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
   
     sections.forEach(section => observer.observe(section));
+  
+    const toggleTheme = document.getElementById('toggleTheme');
+    toggleTheme.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
   });
   
