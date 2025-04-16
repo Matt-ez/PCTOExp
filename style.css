@@ -13,7 +13,7 @@ body {
   }
   
   .navbar {
-    background-color: #003366;
+    background-color: #3c3f41;
     color: white;
     padding: 1rem 2rem;
     display: flex;
@@ -101,7 +101,7 @@ body {
   }
   
   .footer {
-    background-color: #003366;
+    background-color: #3c3f41;
     color: white;
     text-align: center;
     padding: 2rem;
