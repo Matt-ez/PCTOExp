@@ -1,19 +1,38 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background: #f9f9f9;
-    color: #333;
-    scroll-behavior: smooth;
-    transition: background 0.3s ease, color 0.3s ease;
+/* ===== BASE STYLES ===== */
+html {
+    height: 100%;
   }
   
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    min-height: 100%;
+    background-attachment: fixed;
+    color: #333;
+    scroll-behavior: smooth;
+    transition: all 0.3s ease;
+  }
+  
+  /* ===== LIGHT MODE ===== */
+  body {
+    background-color: #f9f9f9;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(200, 200, 255, 0.15) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(255, 200, 200, 0.15) 0%, transparent 20%);
+  }
+  
+  /* ===== DARK MODE ===== */
   body.dark {
-    background: #1e1e1e;
+    background-color: #121212;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(70, 70, 120, 0.2) 0%, transparent 25%),
+      radial-gradient(circle at 90% 80%, rgba(120, 70, 70, 0.2) 0%, transparent 25%);
     color: #f0f0f0;
   }
   
+  /* ===== NAVBAR ===== */
   .navbar {
-    background-color: #3c3f41;
+    background-color: rgba(60, 63, 65, 0.95);
     color: white;
     padding: 1rem 2rem;
     display: flex;
@@ -23,6 +42,7 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
   }
   
   .navbar nav a {
@@ -50,26 +70,57 @@ body {
     transform: scale(1.2);
   }
   
+  /* ===== CONTENT BOXES ===== */
   .content-box {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     max-width: 960px;
     margin: 3rem auto;
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: perspective(500px) translateZ(0);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
   }
   
   body.dark .content-box {
-    background: #2a2a2a;
+    background: rgba(42, 42, 42, 0.95);
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
   }
   
   .content-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: perspective(500px) translateZ(20px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12);
+    z-index: 10;
+    animation: borderGlow 1.5s infinite alternate;
   }
   
+  body.dark .content-box:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-color: #555;
+  }
+  
+  .content-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ffc107, #ff6b6b);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .content-box:hover::before {
+    transform: scaleX(1);
+  }
+  
+  /* ===== SKILLS SECTION ===== */
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -83,23 +134,52 @@ body {
     border-radius: 12px;
     text-align: center;
     font-weight: 500;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
+    transform: perspective(300px) translateZ(0);
+    border: 1px solid rgba(0, 0, 0, 0.05);
   }
   
   body.dark .skill-card {
-    background: #364152;
+    background: rgba(54, 65, 82, 0.9);
     color: white;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #444;
   }
   
   .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transform: perspective(300px) translateZ(30px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.2);
   }
   
+  body.dark .skill-card:hover {
+    box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+    background: rgba(64, 75, 92, 0.95);
+  }
+  
+  .skill-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  body.dark .skill-card::after {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  }
+  
+  .skill-card:hover::after {
+    transform: translateY(0);
+  }
+  
+  /* ===== FOOTER ===== */
   .footer {
     background-color: #3c3f41;
     color: white;
@@ -108,6 +188,7 @@ body {
     margin-top: 4rem;
   }
   
+  /* ===== ANIMATIONS ===== */
   .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -118,256 +199,8 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-  body {
-    background-color: #f9f9f9;
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            rgba(200, 200, 255, 0.1),
-            rgba(200, 200, 255, 0.1) 10px,
-            transparent 10px,
-            transparent 20px
-        );
-}
-
-body.dark {
-    background-color: #1e1e1e;
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            rgba(50, 50, 80, 0.2),
-            rgba(50, 50, 80, 0.2) 10px,
-            transparent 10px,
-            transparent 20px
-        );
-}
-.content-box {
-  background: rgba(255, 255, 255, 0.9);
-  /* rest of your existing styles */
-}
-
-body.dark .content-box {
-  background: rgba(42, 42, 42, 0.9);
-}
-body {
-  /* ... */
-  animation: gradientShift 20s ease infinite;
-  background-size: 200% 200%;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-/* Update your existing content-box styles */
-.content-box {
-  background: white;
-  max-width: 960px;
-  margin: 3rem auto;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  transform: translateY(0);
-}
-
-body.dark .content-box {
-  background: #2a2a2a;
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
-}
-
-.content-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Add a subtle border effect on hover */
-.content-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ffc107, #ff6b6b);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.content-box:hover::before {
-  transform: scaleX(1);
-}
-
-/* Make the skills cards even more prominent */
-.skill-card {
-  background: #e7f1ff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.skill-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.skill-card:hover::after {
-  transform: translateY(0);
-}
-
-body.dark .skill-card {
-  background: #364152;
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-body.dark .skill-card::after {
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-}
-.content-card {
-  padding: 2rem;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.content-box:hover .content-card {
-  transform: translateY(-3px);
-}
-/*newcsspart*/
-
-/* Add this to your existing style.css */
-.content-box {
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transform: perspective(500px) translateZ(0);
-}
-
-.content-box:hover {
-  transform: perspective(500px) translateZ(20px);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.15), 
-              0 10px 10px rgba(0,0,0,0.12);
-  z-index: 10;
-}
-
-/* Enhance the skills cards further */
-.skill-card {
-  transform: perspective(300px) translateZ(0);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.skill-card:hover {
-  transform: perspective(300px) translateZ(30px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.2);
-}
-
-/* Add subtle border animation */
-@keyframes borderGlow {
-  0% { box-shadow: 0 0 0 0 rgba(255,193,7,0.4); }
-  100% { box-shadow: 0 0 0 6px rgba(255,193,7,0); }
-}
-
-.content-box:hover {
-  animation: borderGlow 1.5s infinite alternate;
-}
-
-/* Dark mode adjustments */
-body.dark .content-box:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-              0 10px 10px rgba(0,0,0,0.22);
-}
-
-body.dark .skill-card:hover {
-  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
-}
-body {
-  background-color: #f5f5f5;
-  background-image: 
-      radial-gradient(#e0e0e0 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-body.dark {
-  background-color: #121212;
-  background-image: 
-      radial-gradient(#333333 1px, transparent 1px);
-}
-body.dark {
-  background-color: #121212;
-  background-image: 
-      linear-gradient(rgba(70, 70, 120, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(70, 70, 120, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-/* Light mode background */
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background-color: #f9f9f9;
-  background-image: 
-      radial-gradient(circle at 10% 20%, rgba(200, 200, 255, 0.15) 0%, transparent 20%),
-      radial-gradient(circle at 90% 80%, rgba(255, 200, 200, 0.15) 0%, transparent 20%);
-  color: #333;
-  scroll-behavior: smooth;
-  transition: all 0.3s ease;
-  min-height: 100vh;
-}
-
-/* Dark mode background - now more visible */
-body.dark {
-  background-color: #121212;
-  background-image: 
-      radial-gradient(circle at 10% 20%, rgba(70, 70, 120, 0.2) 0%, transparent 25%),
-      radial-gradient(circle at 90% 80%, rgba(120, 70, 70, 0.2) 0%, transparent 25%);
-  color: #f0f0f0;
-}
-
-/* Content boxes with better dark mode contrast */
-body.dark .content-box {
-  background: rgba(42, 42, 42, 0.95);
-  border: 1px solid #333;
-}
-
-/* Skill cards in dark mode */
-body.dark .skill-card {
-  background: rgba(54, 65, 82, 0.9);
-  border: 1px solid #444;
-}
-
-/* Enhanced hover effects for dark mode */
-body.dark .content-box:hover {
-  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.08);
-  border-color: #555;
-}
-
-body.dark .skill-card:hover {
-  background: rgba(64, 75, 92, 0.95);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-}
-/* Add this to ensure background covers whole page */
-html {
-  height: 100%;
-}
-body {
-  min-height: 100%;
-  background-attachment: fixed;
-}
+  
+  @keyframes borderGlow {
+    0% { box-shadow: 0 0 0 0 rgba(255,193,7,0.4); }
+    100% { box-shadow: 0 0 0 6px rgba(255,193,7,0); }
+  }
