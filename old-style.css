@@ -363,3 +363,6 @@ body {
   min-height: 100%;
   background-attachment: fixed;
 }
+.skill-card{
+  text-decoration: none;
+}
