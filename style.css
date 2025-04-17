@@ -311,10 +311,57 @@ body.dark {
   background-image: 
       radial-gradient(#333333 1px, transparent 1px);
 }
+
+/* Light mode background */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
+  background-image: 
+      radial-gradient(circle at 10% 20%, rgba(200, 200, 255, 0.15) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(255, 200, 200, 0.15) 0%, transparent 20%);
+  color: #333;
+  scroll-behavior: smooth;
+  transition: all 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Dark mode background - now more visible */
 body.dark {
   background-color: #121212;
   background-image: 
-      linear-gradient(rgba(70, 70, 120, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(70, 70, 120, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
+      radial-gradient(circle at 10% 20%, rgba(70, 70, 120, 0.2) 0%, transparent 25%),
+      radial-gradient(circle at 90% 80%, rgba(120, 70, 70, 0.2) 0%, transparent 25%);
+  color: #f0f0f0;
+}
+
+/* Content boxes with better dark mode contrast */
+body.dark .content-box {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid #333;
+}
+
+/* Skill cards in dark mode */
+body.dark .skill-card {
+  background: rgba(54, 65, 82, 0.9);
+  border: 1px solid #444;
+}
+
+/* Enhanced hover effects for dark mode */
+body.dark .content-box:hover {
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.08);
+  border-color: #555;
+}
+
+body.dark .skill-card:hover {
+  background: rgba(64, 75, 92, 0.95);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+/* Add this to ensure background covers whole page */
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-attachment: fixed;
 }
