@@ -311,7 +311,13 @@ body.dark {
   background-image: 
       radial-gradient(#333333 1px, transparent 1px);
 }
-
+body.dark {
+  background-color: #121212;
+  background-image: 
+      linear-gradient(rgba(70, 70, 120, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(70, 70, 120, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
 /* Light mode background */
 body {
   font-family: 'Poppins', sans-serif;
