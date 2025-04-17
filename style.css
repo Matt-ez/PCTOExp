@@ -160,3 +160,88 @@ body {
   50% { background-position: 100% 100%; }
   100% { background-position: 0% 0%; }
 }
+/* Update your existing content-box styles */
+.content-box {
+  background: white;
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+body.dark .content-box {
+  background: #2a2a2a;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+}
+
+.content-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a subtle border effect on hover */
+.content-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffc107, #ff6b6b);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.content-box:hover::before {
+  transform: scaleX(1);
+}
+
+/* Make the skills cards even more prominent */
+.skill-card {
+  background: #e7f1ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.skill-card:hover::after {
+  transform: translateY(0);
+}
+
+body.dark .skill-card {
+  background: #364152;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .skill-card::after {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+}
