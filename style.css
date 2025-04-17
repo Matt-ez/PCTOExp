@@ -254,3 +254,60 @@ body.dark .skill-card::after {
 .content-box:hover .content-card {
   transform: translateY(-3px);
 }
+/*newcsspart*/
+
+/* Add this to your existing style.css */
+.content-box {
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: perspective(500px) translateZ(0);
+}
+
+.content-box:hover {
+  transform: perspective(500px) translateZ(20px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.15), 
+              0 10px 10px rgba(0,0,0,0.12);
+  z-index: 10;
+}
+
+/* Enhance the skills cards further */
+.skill-card {
+  transform: perspective(300px) translateZ(0);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.skill-card:hover {
+  transform: perspective(300px) translateZ(30px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+}
+
+/* Add subtle border animation */
+@keyframes borderGlow {
+  0% { box-shadow: 0 0 0 0 rgba(255,193,7,0.4); }
+  100% { box-shadow: 0 0 0 6px rgba(255,193,7,0); }
+}
+
+.content-box:hover {
+  animation: borderGlow 1.5s infinite alternate;
+}
+
+/* Dark mode adjustments */
+body.dark .content-box:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+              0 10px 10px rgba(0,0,0,0.22);
+}
+
+body.dark .skill-card:hover {
+  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+}
+body {
+  background-color: #f5f5f5;
+  background-image: 
+      radial-gradient(#e0e0e0 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+body.dark {
+  background-color: #121212;
+  background-image: 
+      radial-gradient(#333333 1px, transparent 1px);
+}
