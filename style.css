@@ -118,4 +118,45 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-  
+  body {
+    background-color: #f9f9f9;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(200, 200, 255, 0.1),
+            rgba(200, 200, 255, 0.1) 10px,
+            transparent 10px,
+            transparent 20px
+        );
+}
+
+body.dark {
+    background-color: #1e1e1e;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(50, 50, 80, 0.2),
+            rgba(50, 50, 80, 0.2) 10px,
+            transparent 10px,
+            transparent 20px
+        );
+}
+.content-box {
+  background: rgba(255, 255, 255, 0.9);
+  /* rest of your existing styles */
+}
+
+body.dark .content-box {
+  background: rgba(42, 42, 42, 0.9);
+}
+body {
+  /* ... */
+  animation: gradientShift 20s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
