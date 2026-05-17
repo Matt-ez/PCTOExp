@@ -1,0 +1,297 @@
+/* ── Base ───────────────────────────────────────────────────── */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(200, 200, 255, 0.15) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(255, 200, 200, 0.15) 0%, transparent 20%);
+  color: #333;
+  scroll-behavior: smooth;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+html {
+  height: 100%;
+}
+
+body.dark {
+  background-color: #121212;
+  background-image:
+    linear-gradient(rgba(70, 70, 120, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(70, 70, 120, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: #f0f0f0;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  background-color: #3c3f41;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar nav a:hover {
+  color: #ffc107;
+}
+
+#toggleTheme {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+#toggleTheme:hover {
+  transform: scale(1.2);
+}
+
+/* ── Content boxes ──────────────────────────────────────────── */
+/*
+  FIX HOVER BLUR: rimossi perspective/translateZ e animazioni
+  borderGlow che causavano il rendering su un layer composito
+  separato, sfocando il testo. L'effetto hover ora usa solo
+  box-shadow e translateY (2D, nessun layer GPU extra).
+*/
+.content-box {
+  background: rgba(255, 255, 255, 0.95);
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark .content-box {
+  background: rgba(42, 42, 42, 0.95);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+}
+
+/* Barra colorata in cima all'hover — solo la barra si anima, non la box */
+.content-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffc107, #ff6b6b);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.content-box:hover::before {
+  transform: scaleX(1);
+}
+
+.content-box:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+body.dark .content-box:hover {
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.08);
+  border-color: #555;
+}
+
+.content-card {
+  padding: 0 2rem;
+  border-radius: 12px;
+}
+
+/* ── Skills grid ────────────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.skill-card {
+  background: #e7f1ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.skill-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #d4e6ff;
+}
+
+body.dark .skill-card {
+  background: rgba(54, 65, 82, 0.9);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid #444;
+}
+
+body.dark .skill-card:hover {
+  background: rgba(64, 75, 92, 0.95);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ── Fade-in ─────────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.footer {
+  background-color: #3c3f41;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+/* ── Stage section ───────────────────────────────────────────── */
+.stage-section {
+  max-width: 1100px; /* più largo per contenere le 3 card affiancate */
+}
+
+.stage-intro {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+body.dark .stage-intro {
+  color: #aaa;
+}
+
+/* Griglia orizzontale a 3 colonne */
+.stage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Singola card stage */
+.stage-card {
+  background: #f4f7ff;
+  border-radius: 14px;
+  padding: 1.4rem 1.25rem 1.2rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  border-top: 4px solid #ffc107;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.stage-card:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13);
+}
+
+.stage-card--2 { border-top-color: #ff6b6b; }
+.stage-card--3 { border-top-color: #4e9af1; }
+
+body.dark .stage-card {
+  background: #1e2530;
+  border-top-color: #ffc107;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .stage-card--2 { border-top-color: #ff6b6b; }
+body.dark .stage-card--3 { border-top-color: #4e9af1; }
+
+/* Header della card */
+.stage-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.stage-num {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffc107;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.stage-card--2 .stage-num { color: #ff6b6b; }
+.stage-card--3 .stage-num { color: #4e9af1; }
+
+.stage-card-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.stage-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+body.dark .stage-card p {
+  color: #ccc;
+}
+
+/* Tag tecnologie */
+.stage-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.stage-tag {
+  font-size: 0.72rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 8px;
+  background: #ddeaff;
+  color: #3a6bc7;
+  font-weight: 500;
+}
+
+body.dark .stage-tag {
+  background: #2a3547;
+  color: #8ab4f8;
+}
