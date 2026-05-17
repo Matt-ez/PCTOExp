@@ -9,6 +9,128 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-o8NvzMLgH8qHaGyUHeYaZDnMSUGlLMJyz7mE0oV5x9rVJp0QY1PBlTVZ02fhZtOoz+dnfF6mOfJiwA+RXY8how==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="old-style.css" />
   <script defer src="main.js"></script>
+
+  <style>
+    /* ── Timeline stages ────────────────────────────────────── */
+    .stage-timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stage-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.55rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #ffc107, #ff6b6b, #4e9af1);
+      border-radius: 2px;
+    }
+
+    .stage-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .stage-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .stage-dot {
+      position: absolute;
+      left: -2.05rem;
+      top: 0.35rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #ffc107;
+      background: #ffc107;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stage-item:nth-child(2) .stage-dot {
+      background: #ff6b6b;
+      box-shadow: 0 0 0 2px #ff6b6b;
+    }
+
+    .stage-item:nth-child(3) .stage-dot {
+      background: #4e9af1;
+      box-shadow: 0 0 0 2px #4e9af1;
+    }
+
+    .stage-item:hover .stage-dot {
+      transform: scale(1.3);
+    }
+
+    body.dark .stage-dot {
+      border-color: #2a2a2a;
+    }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      background: #ffc107;
+      color: #333;
+    }
+
+    .stage-item:nth-child(2) .stage-badge {
+      background: #ff6b6b;
+      color: #fff;
+    }
+
+    .stage-item:nth-child(3) .stage-badge {
+      background: #4e9af1;
+      color: #fff;
+    }
+
+    .stage-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .stage-item p {
+      margin: 0;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .stage-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+    }
+
+    .stage-tag {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 8px;
+      background: #e7f1ff;
+      color: #3a6bc7;
+      font-weight: 500;
+    }
+
+    body.dark .stage-tag {
+      background: #364152;
+      color: #a8c8ff;
+    }
+  </style>
 </head>
 <body>
   <header class="navbar">
@@ -16,30 +138,165 @@
     <nav>
       <a href="#home">Home</a>
       <a href="#esperienza">Esperienza</a>
+      <a href="#stage">Stage</a>
       <a href="#competenze">Competenze</a>
     </nav>
     <button id="toggleTheme"><i class="fas fa-circle-half-stroke"></i></button>
   </header>
 
   <main>
+    <!-- ── HOME ──────────────────────────────────────────────── -->
     <div class="content-card">
-    <div class="content-box fade-in" id="home">
-      <h1><i class="fas fa-laptop-code"></i> Benvenuto nel mio sito PCTO</h1>
-      <p>Mi chiamo <strong>Matteo Bonaccini</strong>, ho 17 anni e in questo sito mostrerò la mia esperienza di alternanza scuola-lavoro presso l’azienda <strong>DWL</strong>, specializzata nello sviluppo software.</p>
-    </div>
-    </div>
-    <div class="content-card">
-    <div class="content-box fade-in" id="esperienza">
-      <h2><i class="fas fa-briefcase"></i> La mia Esperienza</h2>
-      <p>Ho completato il mio periodo di PCTO presso <strong>DWL</strong>, un'azienda situata ad Avigliano Umbro, precisamente in via Giacomo Matteotti. Lo stage, della durata di due settimane, mi ha offerto un'immersione diretta in prima persona nel mondo del lavoro informatico.</p>
-      <p>Durante questa esperienza, ho avuto l'opportunità di collaborare attivamente con il team di sviluppo, imparando e approfondendo la mia conoscenza di tecnologie come <strong>Angular</strong>, <strong>TypeScript</strong>, <strong>JavaScript</strong> e <strong>MySQL</strong>. Ho potuto osservare da vicino progetti reali, partecipare ad attività di programmazione e comprendere l'importanza del lavoro di squadra e della gestione efficace del tempo.</p>
-      <hr>
-      <h3><i class="fas fa-building-columns"></i> Introduzione su DWL</h3>
-      <p><strong>DWL</strong> è un'azienda umbra specializzata nello sviluppo di software su misura, immergendosi principalmente nel campo della costruzione di software di ogni genere. Grazie a un team dinamico e altamente qualificato, DWL crea soluzioni digitali per aziende operanti in diversi settori, promuovendo attivamente la trasformazione digitale.</p>
-      <p>DWL è in grado di progettare applicazioni web e sistemi gestionali personalizzati, supportando i clienti in ogni fase del processo, dall'analisi iniziale fino alla manutenzione del prodotto finale.</p>
-    </div>
+      <div class="content-box fade-in" id="home">
+        <h1><i class="fas fa-laptop-code"></i> Benvenuto nel mio sito PCTO</h1>
+        <p>
+          Mi chiamo <strong>Matteo Bonaccini</strong>, ho 17 anni e in questo sito mostrerò la mia esperienza di
+          alternanza scuola-lavoro presso l'azienda <strong>DWL</strong>, specializzata nello sviluppo software.
+          Il percorso PCTO mi ha dato la possibilità di entrare in contatto con il mondo reale della programmazione,
+          mettendo in pratica le conoscenze acquisite a scuola e scoprendo nuove tecnologie e metodologie di lavoro
+          professionale.
+        </p>
+      </div>
     </div>
 
+    <!-- ── ESPERIENZA ─────────────────────────────────────────── -->
+    <div class="content-card">
+      <div class="content-box fade-in" id="esperienza">
+        <h2><i class="fas fa-briefcase"></i> La mia Esperienza</h2>
+        <p>
+          Ho completato il mio percorso di PCTO presso <strong>DWL</strong>, un'azienda situata ad Avigliano Umbro,
+          precisamente in via Giacomo Matteotti. Lo stage, articolato in più periodi, mi ha offerto
+          un'immersione diretta e in prima persona nel mondo del lavoro informatico, consentendomi di crescere
+          sia dal punto di vista tecnico che da quello personale.
+        </p>
+        <p>
+          Durante queste esperienze, ho avuto l'opportunità di collaborare attivamente con il team di sviluppo,
+          imparando e approfondendo la mia conoscenza di tecnologie moderne come <strong>Angular</strong>,
+          <strong>TypeScript</strong>, <strong>JavaScript</strong>, <strong>MySQL</strong> e <strong>Python</strong>.
+          Ho potuto osservare da vicino progetti reali, partecipare ad attività di programmazione e comprendere
+          l'importanza del lavoro di squadra, della gestione efficace del tempo e dell'approccio metodico alla
+          risoluzione dei problemi.
+        </p>
+        <hr>
+        <h3><i class="fas fa-building-columns"></i> Introduzione su DWL</h3>
+        <p>
+          <strong>DWL</strong> è un'azienda umbra specializzata nello sviluppo di software su misura, operando
+          principalmente nel campo della costruzione di applicazioni di ogni genere. Grazie a un team dinamico e
+          altamente qualificato, DWL crea soluzioni digitali per aziende che operano in diversi settori,
+          promuovendo attivamente la trasformazione digitale e l'innovazione tecnologica.
+        </p>
+        <p>
+          DWL è in grado di progettare applicazioni web e sistemi gestionali personalizzati, supportando i clienti
+          in ogni fase del processo: dall'analisi iniziale dei requisiti, passando per la progettazione
+          dell'architettura software, fino alla manutenzione e all'aggiornamento del prodotto finale. Lavorare
+          in questo contesto mi ha permesso di toccare con mano come si sviluppa software professionale in
+          un ambiente aziendale reale.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── LE TRE ESPERIENZE DI STAGE ────────────────────────── -->
+    <div class="content-card">
+      <div class="content-box fade-in" id="stage">
+        <h2><i class="fas fa-layer-group"></i> Le Tre Esperienze di Stage</h2>
+        <p>
+          Il mio percorso PCTO si è sviluppato in tre distinte esperienze di stage, ognuna con obiettivi e
+          tecnologie differenti. Ogni periodo mi ha permesso di acquisire competenze specifiche e di affrontare
+          sfide sempre nuove, contribuendo a formare un profilo tecnico più completo e versatile.
+        </p>
+
+        <div class="stage-timeline">
+
+          <!-- Stage 1 -->
+          <div class="stage-item">
+            <div class="stage-dot"></div>
+            <div class="stage-header">
+              <span class="stage-badge">Stage 1</span>
+              <h3><i class="fas fa-users-gear"></i> Sviluppo Web in Team</h3>
+            </div>
+            <p>
+              Durante la prima esperienza di stage ho mosso i primi passi nel lavoro in team all'interno
+              di un contesto aziendale reale. Ho imparato a coordinarmi con altri sviluppatori, a rispettare
+              le scadenze e a contribuire attivamente a un progetto condiviso. Dal punto di vista tecnico,
+              ho approfondito l'uso di <strong>NodeJS</strong> per lo sviluppo lato server e di
+              <strong>XAMPP</strong> come ambiente di sviluppo locale, integrando il tutto con un database
+              <strong>MySQL</strong> per la gestione e la persistenza dei dati. Sul fronte frontend ho
+              consolidato le mie competenze in <strong>TypeScript</strong> e nel framework
+              <strong>Angular</strong>, imparando a costruire applicazioni web strutturate e scalabili.
+              Questa prima esperienza è stata fondamentale per capire le dinamiche di un team di sviluppo
+              professionale.
+            </p>
+            <div class="stage-tags">
+              <span class="stage-tag"><i class="fab fa-node-js"></i> NodeJS</span>
+              <span class="stage-tag">XAMPP</span>
+              <span class="stage-tag"><i class="fas fa-database"></i> MySQL</span>
+              <span class="stage-tag"><i class="fas fa-code"></i> TypeScript</span>
+              <span class="stage-tag"><i class="fab fa-angular"></i> Angular</span>
+              <span class="stage-tag"><i class="fas fa-people-group"></i> Team Work</span>
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="stage-item">
+            <div class="stage-dot"></div>
+            <div class="stage-header">
+              <span class="stage-badge">Stage 2</span>
+              <h3><i class="fas fa-file-excel"></i> Gestione e Automazione Excel</h3>
+            </div>
+            <p>
+              La seconda esperienza di stage è stata incentrata sul mondo dei fogli di calcolo e
+              sull'elaborazione di dati strutturati tramite <strong>Excel</strong>. Ho imparato a navigare
+              all'interno di tabelle complesse, a leggerne e interpretarne il contenuto e soprattutto a
+              modificarle in maniera efficiente e precisa. Ho acquisito familiarità con formule avanzate,
+              la gestione di grandi volumi di dati e le tecniche per mantenere la coerenza e la qualità
+              delle informazioni all'interno dei fogli di lavoro. Questa esperienza mi ha aperto gli occhi
+              sull'importanza che strumenti come Excel rivestono nel contesto aziendale quotidiano, non solo
+              come semplici registri, ma come veri e propri strumenti di analisi e reportistica.
+            </p>
+            <div class="stage-tags">
+              <span class="stage-tag"><i class="fas fa-file-excel"></i> Excel</span>
+              <span class="stage-tag">Tabelle & Fogli di calcolo</span>
+              <span class="stage-tag">Gestione dati</span>
+              <span class="stage-tag">Analisi dati</span>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="stage-item">
+            <div class="stage-dot"></div>
+            <div class="stage-header">
+              <span class="stage-badge">Stage 3</span>
+              <h3><i class="fas fa-file-pdf"></i> Estrazione PDF e Automazione con Python</h3>
+            </div>
+            <p>
+              La terza e più tecnica delle esperienze mi ha visto protagonista nello sviluppo di un sistema
+              di automazione per la gestione dei documenti PDF. Ho imparato a estrarre dati da file PDF
+              sfruttando le <strong>coordinate di testo</strong>, ovvero identificando con precisione la
+              posizione di ciascun campo all'interno della pagina per poterne recuperare il contenuto in
+              modo affidabile. I dati estratti venivano poi riscritti e riorganizzati in nuovi documenti PDF
+              generati programmaticamente. Il cuore di tutto il sistema era un <strong>programma watchdog</strong>
+              che ho sviluppato autonomamente in <strong>Python</strong>: un processo sempre attivo in background
+              che monitora una cartella in tempo reale e, non appena rileva un nuovo file PDF, avvia
+              automaticamente l'intero flusso di elaborazione senza alcun intervento manuale. Questa
+              esperienza mi ha insegnato a progettare soluzioni di automazione reali, a lavorare con librerie
+              Python per la manipolazione di PDF e a ragionare in termini di flussi di lavoro robusti e
+              affidabili.
+            </p>
+            <div class="stage-tags">
+              <span class="stage-tag"><i class="fab fa-python"></i> Python</span>
+              <span class="stage-tag">Watchdog</span>
+              <span class="stage-tag">Estrazione PDF</span>
+              <span class="stage-tag">Automazione</span>
+              <span class="stage-tag">Coordinate testo</span>
+              <span class="stage-tag">Generazione PDF</span>
+            </div>
+          </div>
+
+        </div><!-- /stage-timeline -->
+      </div>
+    </div>
+
+    <!-- ── COMPETENZE ─────────────────────────────────────────── -->
     <div class="content-box fade-in" id="competenze">
       <h2><i class="fas fa-tools"></i> Competenze Acquisite</h2>
       <div class="skills-grid">
@@ -54,6 +311,18 @@
         </a>
         <a href="https://www.mysql.com/" target="_blank" class="skill-card">
           <i class="fas fa-database"></i> MySQL
+        </a>
+        <a href="https://nodejs.org/" target="_blank" class="skill-card">
+          <i class="fab fa-node-js"></i> NodeJS
+        </a>
+        <a href="https://www.python.org/" target="_blank" class="skill-card">
+          <i class="fab fa-python"></i> Python
+        </a>
+        <a href="https://www.apachefriends.org/" target="_blank" class="skill-card">
+          <i class="fas fa-server"></i> XAMPP
+        </a>
+        <a href="https://support.microsoft.com/excel" target="_blank" class="skill-card">
+          <i class="fas fa-file-excel"></i> Excel
         </a>
       </div>
     </div>
