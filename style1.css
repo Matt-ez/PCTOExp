@@ -12,7 +12,9 @@ body {
   min-height: 100vh;
 }
 
-html { height: 100%; }
+html {
+  height: 100%;
+}
 
 body.dark {
   background-color: #121212;
@@ -45,7 +47,9 @@ body.dark {
   transition: color 0.3s ease;
 }
 
-.navbar nav a:hover { color: #ffc107; }
+.navbar nav a:hover {
+  color: #ffc107;
+}
 
 #toggleTheme {
   background: none;
@@ -56,53 +60,36 @@ body.dark {
   transition: transform 0.3s;
 }
 
-#toggleTheme:hover { transform: scale(1.2); }
+#toggleTheme:hover {
+  transform: scale(1.2);
+}
 
 /* ── Content boxes ──────────────────────────────────────────── */
 /*
-  HOVER SENZA BLUR — strategia:
-  1. Niente transform sull'elemento padre (translateZ, perspective,
-     translateY sollevano l'elemento su un layer GPU e causano
-     sub-pixel rendering sfocato sul testo).
-  2. La barra colorata top usa uno pseudo-elemento ::before con
-     transform: scaleX() — è DENTRO la box, non sulla box stessa,
-     quindi non trascina il testo nel layer composito.
-  3. will-change: box-shadow dice al browser di promuovere solo
-     la shadow su GPU, tenendo il contenuto testuale sul layer
-     principale nitido.
-  4. overflow: hidden rimane per la barra, ma senza transform sul
-     contenitore non si attiva il bug di sub-pixel compositing.
+  FIX HOVER BLUR: rimossi perspective/translateZ e animazioni
+  borderGlow che causavano il rendering su un layer composito
+  separato, sfocando il testo. L'effetto hover ora usa solo
+  box-shadow e translateY (2D, nessun layer GPU extra).
 */
 .content-box {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
   max-width: 960px;
   margin: 3rem auto;
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
-  will-change: box-shadow;
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 body.dark .content-box {
-  background: #2a2a2a;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: rgba(42, 42, 42, 0.95);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
   border: 1px solid #333;
 }
 
-.content-box:hover {
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
-}
-
-body.dark .content-box:hover {
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
-  border-color: #555;
-}
-
-/* Barra colorata animata — solo lo pseudo-elemento usa transform,
-   non il contenitore, quindi il testo resta nitido */
+/* Barra colorata in cima all'hover — solo la barra si anima, non la box */
 .content-box::before {
   content: '';
   position: absolute;
@@ -113,12 +100,26 @@ body.dark .content-box:hover {
   background: linear-gradient(90deg, #ffc107, #ff6b6b);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s ease;
+  transition: transform 0.3s ease;
 }
 
-.content-box:hover::before { transform: scaleX(1); }
+.content-box:hover::before {
+  transform: scaleX(1);
+}
 
-.content-card { padding: 0 2rem; border-radius: 12px; }
+.content-box:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+body.dark .content-box:hover {
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.08);
+  border-color: #555;
+}
+
+.content-card {
+  padding: 0 2rem;
+  border-radius: 12px;
+}
 
 /* ── Skills grid ────────────────────────────────────────────── */
 .skills-grid {
@@ -134,28 +135,27 @@ body.dark .content-box:hover {
   border-radius: 12px;
   text-align: center;
   font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  will-change: box-shadow;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, background 0.3s ease;
   text-decoration: none;
   color: inherit;
 }
 
 .skill-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   background: #d4e6ff;
 }
 
 body.dark .skill-card {
-  background: #364152;
+  background: rgba(54, 65, 82, 0.9);
   color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   border: 1px solid #444;
 }
 
 body.dark .skill-card:hover {
-  background: #404b5c;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  background: rgba(64, 75, 92, 0.95);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
 
 /* ── Fade-in ─────────────────────────────────────────────────── */
@@ -180,16 +180,20 @@ body.dark .skill-card:hover {
 }
 
 /* ── Stage section ───────────────────────────────────────────── */
-.stage-section { max-width: 1100px; }
+.stage-section {
+  max-width: 1100px; /* più largo per contenere le 3 card affiancate */
+}
 
 .stage-intro {
   margin-bottom: 1.5rem;
   color: #555;
 }
 
-body.dark .stage-intro { color: #aaa; }
+body.dark .stage-intro {
+  color: #aaa;
+}
 
-/* Griglia orizzontale 3 colonne */
+/* Griglia orizzontale a 3 colonne */
 .stage-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -198,11 +202,12 @@ body.dark .stage-intro { color: #aaa; }
 }
 
 @media (max-width: 820px) {
-  .stage-grid { grid-template-columns: 1fr; }
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Singola card stage — stesso fix anti-blur:
-   will-change: box-shadow, nessun transform sul contenitore */
+/* Singola card stage */
 .stage-card {
   background: #f4f7ff;
   border-radius: 14px;
@@ -212,23 +217,26 @@ body.dark .stage-intro { color: #aaa; }
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  will-change: box-shadow;
   transition: box-shadow 0.3s ease;
 }
 
-.stage-card:hover { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14); }
+.stage-card:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13);
+}
 
 .stage-card--2 { border-top-color: #ff6b6b; }
 .stage-card--3 { border-top-color: #4e9af1; }
 
 body.dark .stage-card {
   background: #1e2530;
+  border-top-color: #ffc107;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-body.dark .stage-card:hover { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5); }
+body.dark .stage-card--2 { border-top-color: #ff6b6b; }
+body.dark .stage-card--3 { border-top-color: #4e9af1; }
 
-/* Header card */
+/* Header della card */
 .stage-card-header {
   display: flex;
   align-items: flex-start;
@@ -240,7 +248,7 @@ body.dark .stage-card:hover { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5); }
   font-weight: 700;
   line-height: 1;
   color: #ffc107;
-  opacity: 0.55;
+  opacity: 0.6;
   flex-shrink: 0;
 }
 
@@ -261,7 +269,9 @@ body.dark .stage-card:hover { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5); }
   color: #444;
 }
 
-body.dark .stage-card p { color: #ccc; }
+body.dark .stage-card p {
+  color: #ccc;
+}
 
 /* Tag tecnologie */
 .stage-tags {
