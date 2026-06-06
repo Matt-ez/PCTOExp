@@ -120,6 +120,21 @@ body.dark .content-box:hover {
 
 .content-card { padding: 0 2rem; border-radius: 12px; }
 
+.hero-image {
+  max-width: 700px;
+  margin: 1.5rem auto 0;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
 /* ── Skills grid ────────────────────────────────────────────── */
 .skills-grid {
   display: grid;
@@ -285,3 +300,13 @@ body.dark .stage-tag {
   background: #2a3547;
   color: #8ab4f8;
 }
+
+/* ── Conclusioni ───────────────────────────────────────────── */
+.conclusions-note {
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+.conclusions-note { color: #555; }
+
+body.dark .conclusions-note { color: #bdbdbd; }
