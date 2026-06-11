@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FSL Experience - Matteo Bonaccini</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-o8NvzMLgH8qHaGyUHeYaZDnMSUGlLMJyz7mE0oV5x9rVJp0QY1PBlTVZ02fhZtOoz+dnfF6mOfJiwA+RXY8how==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <script defer src="main.js"></script>
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">FSL Experience💻</div>
+    <div class="logo">FSL Experience <i class="fas fa-laptop-code logo-icon"></i></div>
     <nav>
       <a href="#home">Home</a>
       <a href="#esperienza">Esperienza</a>
       <a href="#stage">Stage</a>
       <a href="#competenze">Competenze</a>
     </nav>
-    <button id="toggleTheme"><i class="fas fa-circle-half-stroke"></i></button>
+    <button id="toggleTheme" title="Cambia tema"><i class="fas fa-circle-half-stroke"></i></button>
   </header>
 
   <main>
@@ -34,6 +34,11 @@
           software. In totale ho svolto tre stage, ognuno incentrato su tecnologie diverse; in questo sito
           spiegherò cosa ho fatto in ciascuno di essi.
         </p>
+        <div class="home-meta">
+          <span class="meta-badge"><i class="fas fa-map-marker-alt"></i> Avigliano Umbro (TR)</span>
+          <span class="meta-badge"><i class="fas fa-building"></i> DigitalWebLab</span>
+          <span class="meta-badge"><i class="fas fa-calendar-alt"></i> A.S. 2024/25</span>
+        </div>
       </div>
     </div>
 
@@ -44,9 +49,9 @@
         <p>
           Ho svolto la FSL presso <strong>DWL</strong>, un'azienda di Avigliano Umbro che sviluppa
           software su misura per i propri clienti. I tre stage che ho effettuato erano ciascuno incentrato su un tema
-          diverso: nel primo ho lavorato su un progetto web in team, nel secondo ho gestito dati
-          su Excel e nel terzo ho scritto un programma Python per automatizzare l'elaborazione
-          di file PDF.
+          diverso: nel primo e nel secondo ho lavorato allo sviluppo di un gestionale web per una libreria,
+          nel terzo ho scritto un programma Python per automatizzare l'estrazione di dati
+          dalle fatture PDF di TIM.
         </p>
         <p>
           Lavorare in azienda mi ha fatto capire molte cose che a scuola non si affrontano: come ci si
@@ -55,7 +60,7 @@
           mi ha lasciato qualcosa di concreto.
         </p>
         <hr>
-        <h3><i class="fas fa-building-columns"></i> DWL</h3>
+        <h3><i class="fas fa-building-columns"></i> DWL — DigitalWebLab</h3>
         <p>
           <strong>DWL</strong> è un'azienda umbra che si occupa di sviluppare applicazioni web
           e gestionali personalizzate. Seguono l'intero ciclo di sviluppo: dall'analisi dei requisiti con il
@@ -64,6 +69,9 @@
           utile proprio perché ho potuto seguire il flusso di lavoro completo senza restare circoscritto
           a un solo compito.
         </p>
+        <div class="dwl-info">
+          <span><i class="fas fa-map-marker-alt"></i> Via Giacomo Matteotti 79b, Avigliano Umbro (TR)</span>
+        </div>
       </div>
     </div>
 
@@ -81,19 +89,20 @@
         <div class="stage-card stage-card--1">
           <div class="stage-card-header">
             <span class="stage-num">01</span>
-            <h3><i class="fas fa-users-gear"></i> Sviluppo Web in Team</h3>
+            <h3><i class="fas fa-book"></i> Gestionale Libreria — Prima Parte</h3>
           </div>
+          <p class="stage-period"><i class="fas fa-calendar-alt"></i> 13 gennaio – 24 gennaio 2025</p>
           <p>
-            Nel primo stage ho lavorato con il team di sviluppo su un progetto web reale. Lato
-            backend ho utilizzato <strong>NodeJS</strong> con <strong>XAMPP</strong> come ambiente
-            locale, collegato a un database <strong>MySQL</strong>. Sul frontend ho scritto
-            componenti in <strong>Angular</strong> usando <strong>TypeScript</strong>, gestendo
-            il flusso di dati tra client e server. È stato il primo contatto serio con Git in un
-            contesto collaborativo: branch, pull request, convenzioni di denominazione — concetti che a
-            scuola si sentono nominare ma che si comprendono davvero solo lavorandoci sopra.
+            Nel primo stage ho iniziato lo sviluppo di un <strong>gestionale web per una libreria</strong>,
+            lavorando in team con i colleghi di DWL. Il sistema permette di gestire il catalogo dei libri,
+            l'inserimento di nuovi titoli e la registrazione dei prestiti agli utenti. Lato backend ho
+            utilizzato <strong>Node.js</strong> con <strong>XAMPP</strong> come ambiente locale e
+            <strong>MySQL</strong> come database. Sul frontend ho scritto componenti in
+            <strong>Angular</strong> usando <strong>TypeScript</strong>, gestendo il flusso di dati
+            tra client e server.
           </p>
           <div class="stage-tags">
-            <span class="stage-tag"><i class="fab fa-node-js"></i> NodeJS</span>
+            <span class="stage-tag"><i class="fab fa-node-js"></i> Node.js</span>
             <span class="stage-tag">XAMPP</span>
             <span class="stage-tag"><i class="fas fa-database"></i> MySQL</span>
             <span class="stage-tag"><i class="fas fa-code"></i> TypeScript</span>
@@ -105,23 +114,25 @@
         <div class="stage-card stage-card--2">
           <div class="stage-card-header">
             <span class="stage-num">02</span>
-            <h3><i class="fas fa-file-excel"></i> Gestione Dati con Excel</h3>
+            <h3><i class="fas fa-book-open"></i> Gestionale Libreria — Seconda Parte</h3>
           </div>
+          <p class="stage-period"><i class="fas fa-calendar-alt"></i> 3 giugno – 20 giugno 2025</p>
           <p>
-            Il secondo stage era incentrato su <strong>Excel</strong>. All'inizio pensavo fosse
-            la parte meno tecnica, ma mi sono ricreduto abbastanza rapidamente: i fogli che ho
-            dovuto gestire erano pieni di formule, riferimenti incrociati tra più fogli e dati
-            che dovevano rimanere coerenti. Ho imparato a leggere la struttura di tabelle esistenti
-            senza alterarle, a modificare celle collegate e a comprendere la logica con cui erano state
-            costruite. In azienda Excel viene utilizzato come strumento di reportistica operativa, non
-            soltanto per raccogliere numeri; questo mi ha fatto vedere lo strumento in modo completamente
-            diverso rispetto a come lo si usa a scuola.
+            Nel secondo stage ho ripreso e ampliato il gestionale della libreria sviluppato a gennaio.
+            Con una base di codice già esistente da cui partire, ho potuto concentrarmi sull'aggiunta
+            di nuove funzionalità e sul miglioramento di quelle già presenti. Ho lavorato sia sul
+            backend in <strong>Node.js</strong> che sul frontend in <strong>Angular</strong>,
+            imparando a orientarmi in una codebase scritta in precedenza e a modificarla senza
+            introdurre regressioni. Questa fase mi ha insegnato molto sul valore di un codice
+            pulito e ben strutturato: intervenire su qualcosa già costruito richiede una comprensione
+            profonda della logica originale e molta attenzione ai dettagli.
           </p>
           <div class="stage-tags">
-            <span class="stage-tag"><i class="fas fa-file-excel"></i> Excel</span>
-            <span class="stage-tag">Tabelle e Formule</span>
-            <span class="stage-tag">Gestione dati</span>
-            <span class="stage-tag">Reportistica</span>
+            <span class="stage-tag"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="stage-tag"><i class="fab fa-angular"></i> Angular</span>
+            <span class="stage-tag"><i class="fas fa-database"></i> MySQL</span>
+            <span class="stage-tag"><i class="fas fa-code-branch"></i> Manutenzione codice</span>
+            <span class="stage-tag">Nuove funzionalità</span>
           </div>
         </div>
 
@@ -129,24 +140,28 @@
         <div class="stage-card stage-card--3">
           <div class="stage-card-header">
             <span class="stage-num">03</span>
-            <h3><i class="fas fa-file-pdf"></i> Automazione PDF con Python</h3>
+            <h3><i class="fas fa-file-invoice"></i> Estrazione Dati da Fatture PDF</h3>
           </div>
+          <p class="stage-period"><i class="fas fa-calendar-alt"></i> 15 settembre – 27 settembre 2025</p>
           <p>
-            Il terzo stage è stato quello in cui ho lavorato con maggiore autonomia. Ho scritto un
-            sistema in <strong>Python</strong> per elaborare automaticamente file PDF: il programma
-            legge i dati utilizzando le <strong>coordinate di testo</strong>, ovvero la posizione precisa
-            di ogni campo nella pagina, poi riscrive quei dati in un nuovo PDF generato via codice.
-            Il componente centrale è un <strong>watchdog</strong> che ho sviluppato personalmente: rimane in ascolto
-            su una cartella e, non appena viene rilevato un nuovo file PDF, avvia automaticamente l'intera
-            pipeline di elaborazione. È stato il progetto più soddisfacente perché partivo da zero
-            e alla fine girava davvero in produzione.
+            Nel terzo stage ho lavorato in autonomia su un programma <strong>Python</strong> per
+            automatizzare l'estrazione di dati dalle <strong>fatture PDF di TIM</strong>. Il sistema
+            individua e legge campi specifici del documento — come <strong>ragione sociale</strong>,
+            <strong>nome</strong>, <strong>numero di telefono</strong> e altri dati anagrafici —
+            sfruttando le coordinate di testo, ovvero la posizione precisa di ogni campo all'interno
+            della pagina. Una volta estratti, i dati vengono strutturati e resi disponibili per
+            l'elaborazione successiva. Il componente centrale è un <strong>watchdog</strong> che
+            monitora una cartella: non appena rileva un nuovo file PDF, avvia automaticamente
+            l'intera pipeline di estrazione. È stato il progetto più soddisfacente perché partivo
+            da zero e alla fine girava in produzione.
           </p>
           <div class="stage-tags">
             <span class="stage-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="stage-tag">Estrazione PDF</span>
+            <span class="stage-tag">Coordinate di testo</span>
             <span class="stage-tag">Watchdog</span>
-            <span class="stage-tag">Coordinate PDF</span>
             <span class="stage-tag">Automazione</span>
-            <span class="stage-tag">Generazione PDF</span>
+            <span class="stage-tag">Fatture TIM</span>
           </div>
         </div>
 
@@ -189,16 +204,16 @@
 
   </main>
 
-    <!-- CONCLUSIONI -->
-    <div class="content-card">
-      <div class="content-box fade-in" id="conclusioni">
-        <h2><i class="fas fa-comment-dots"></i> Conclusioni</h2>
-        <p class="conclusions-note">Scrivi qui le tue conclusioni finali sull'esperienza; puoi modificare questo testo direttamente nel file.</p>
-      </div>
+  <!-- CONCLUSIONI -->
+  <div class="content-card">
+    <div class="content-box fade-in" id="conclusioni">
+      <h2><i class="fas fa-comment-dots"></i> Conclusioni</h2>
+      <p class="conclusions-note">Scrivi qui le tue conclusioni finali sull'esperienza; puoi modificare questo testo direttamente nel file.</p>
     </div>
+  </div>
 
   <footer class="footer">
-    <p>&copy; 2026 Matteo Bonaccini</p>
+    <p>&copy; 2026 Matteo Bonaccini &mdash; FSL presso DigitalWebLab, Avigliano Umbro</p>
   </footer>
 </body>
 </html>
