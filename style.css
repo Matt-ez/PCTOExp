@@ -412,3 +412,16 @@ body.dark .skill-card:hover { color: #7eb3e8; border-color: #4a7fc1; }
   margin-top: 3rem;
   font-size: 0.85rem;
 }
+
+
+#aids {
+  color: var(--accent);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+#aids:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
